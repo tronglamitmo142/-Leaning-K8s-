@@ -1,0 +1,16 @@
+- Create docker images: `docker build . -t tronglamitmo142/k8s-web-hello`
+- Docker login: `docker login`
+- Docker push, trước khi push phải tag mới push được:`docker tag tronglamitmo142/k8s-web-hello lamnt67/k8s-web-hello` && `docker push lamnt67/k8s-web-hello` 
+- Create deployment: `k create deployment k8s-web-hello --image=lamnt67/k8s-web-hello `
+- Create service: `k expose deployment k8s-web-hello --port=3000`  
+- Access to minikube node và kiểm tra xem pod nodejs đã chạy chưa
+- Scale deployment: `scale deployment k8s-web-hello --replicas=4`
+- Kiểm tra trên minikube node sự khác nhau sau khi scale
+- Kết nối với deployment bằng node port service
+- Tạo nodeport: `expose deployment k8s-web-hello --type=No --port=3000`
+- Access deployment từ máy host: `curl 192.168.59.101:31387`
+- Modify index.mjs sau đó push version mới lên docker hub 
+- Set new image cho deployment hiện tại: `k set image deployment k8s-web-hello k8s-web-hello=lamnt67/k8s-web-hello:2.0.0`
+- Delete all resource: `k delete all --all`
+- Tạo Deployment sử dụng yaml file
+-  
